@@ -15,6 +15,14 @@ body:
       placeholder: Describe the need for the feature.
     validations:
       required: true
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: If you have a specific solution or implementation in mind, please describe it here.
+      placeholder: Describe your proposed solution or enhancement.
+    validations:
+      required: false
   - type: input
     id: sdk_version
     attributes:
@@ -31,14 +39,6 @@ body:
       placeholder: ex. v1.1.1
     validations:
       required: false
-  - type: textarea
-    id: logs
-    attributes:
-      label: Relevant log output
-      description: |
-        Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
-        Please check your logs before submission to ensure sensitive information is redacted.
-      render: shell
   - type: checkboxes
     id: terms
     attributes:

@@ -1,5 +1,5 @@
 name: Update Prettier
-"on":
+on:
   push:
     branches:
       - renovate/prettier-*
@@ -21,5 +21,5 @@ jobs:
         with:
           title: Prettier updated
           body: An update to prettier required updates to your code.
-          branch: ${{ github.ref }}
+          branch: ${{ github.ref_name }}
           commit-message: "style: prettier"

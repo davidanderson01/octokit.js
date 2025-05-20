@@ -2,6 +2,10 @@
 import esbuild from "esbuild";
 import { copyFile, readFile, writeFile, rm } from "node:fs/promises";
 import { glob } from "glob";
+import { exec } from "node:child_process";
+import { promisify } from "node:util";
+
+const execAsync = promisify(exec);
 
 /**
  * @type {esbuild.BuildOptions}
@@ -20,6 +24,7 @@ const sharedOptions = {
 async function main() {
   // Start with a clean slate
   await rm("pkg", { recursive: true, force: true });
+
   // Build the source code for a neutral platform as ESM
   await esbuild.build({
     entryPoints: await glob(["./src/*.ts", "./src/**/*.ts"]),
@@ -47,6 +52,9 @@ async function main() {
     bundle: true,
     ...sharedOptions,
   });
+
+  // Generate types using tsc, output to pkg/dist-types
+  await execAsync("tsc --emitDeclarationOnly --declaration --outDir pkg/dist-types");
 
   // Copy the README, LICENSE to the pkg folder
   await copyFile("LICENSE", "pkg/LICENSE");
@@ -80,4 +88,9 @@ async function main() {
     ),
   );
 }
-main();
+
+// Properly handle errors and top-level await
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

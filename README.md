@@ -2,15 +2,13 @@
 
 > The all-batteries-included GitHub SDK for Browsers, Node.js, and Deno.
 
-The `octokit` package integrates the three main Octokit libraries
+The `octokit` package integrates the three main Octokit libraries:
 
 1. **API client** (REST API requests, GraphQL API queries, Authentication)
 2. **App client** (GitHub App & installations, Webhooks, OAuth)
 3. **Action client** (Pre-authenticated API client for single repository)
 
-## Table of contents <!-- omit in toc -->
-
-<!-- toc -->
+## Table of contents
 
 - [octokit.js](#octokitjs)
   - [Features](#features)
@@ -38,8 +36,6 @@ The `octokit` package integrates the three main Octokit libraries
   - [Action client](#action-client)
   - [LICENSE](#license)
 
-<!-- tocstop -->
-
 ## Features
 
 - **Complete**. All features of GitHub's platform APIs are covered.
@@ -47,8 +43,8 @@ The `octokit` package integrates the three main Octokit libraries
 - **Universal**. Works in all modern browsers, [Node.js](https://nodejs.org/), and [Deno](https://deno.land/).
 - **Tested**. All libraries have a 100% test coverage.
 - **Typed**. All libraries have extensive TypeScript declarations.
-- **Decomposable**. Use only the code you need. You can build your own Octokit in only a few lines of code or use the underlying static methods. Make your own tradeoff between functionality and bundle size.
-- **Extendable**. A feature missing? Add functionalities with plugins, hook into the request or webhook lifecycle or implement your own authentication strategy.
+- **Decomposable**. Use only the code you need. You can build your own Octokit instance in only a few lines of code or use the underlying static methods. Make your own tradeoff between functionality and bundle size.
+- **Extendable**. A feature missing? Add functionalities with plugins, hook into the request or webhook lifecycle, or implement your own authentication strategy.
 
 ## Usage
 
@@ -90,10 +86,10 @@ import { Octokit, App } from "octokit";
 </tbody>
 </table>
 
-> [!IMPORTANT]
+> **IMPORTANT**
 > As we use [conditional exports](https://nodejs.org/api/packages.html#conditional-exports), you will need to adapt your `tsconfig.json` by setting `"moduleResolution": "node16", "module": "node16"`.
 >
-> See the TypeScript docs on [package.json "exports"](https://www.typescriptlang.org/docs/handbook/modules/reference.html#packagejson-exports).<br>
+> See the TypeScript docs on [package.json "exports"](https://www.typescriptlang.org/docs/handbook/modules/reference.html#packagejson-exports).  
 > See this [helpful guide on transitioning to ESM](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c) from [@sindresorhus](https://github.com/sindresorhus)
 
 ## `Octokit` API Client
@@ -143,7 +139,7 @@ The most commonly used options are
       </td>
       <td>
 
-Setting a user agent is required for all requests sent to GitHub's Platform APIs. The user agent defaults to something like this: `octokit.js/v1.2.3 Node.js/v8.9.4 (macOS High Sierra; x64)`. It is recommend to set your own user agent, which will prepend the default one.
+Setting a user agent is required for all requests sent to GitHub's Platform APIs. The user agent defaults to something like this: `octokit.js/v1.2.3 Node.js/v8.9.4 (macOS High Sierra; x64)`. It is **recommended** to set your own user agent, which will prepend the default one.
 
 ```js
 const octokit = new Octokit({
@@ -924,7 +920,7 @@ expressApp.listen(3000, () => {
 
 You must not expose your app's client secret to the user, so you cannot use the `App` constructor. Instead, you have to create a server using the `App` constructor which exposes the `/api/github/oauth/*` routes, through which you can safely implement an OAuth login for apps running in a web browser.
 
-If you set `(User) Authorization callback URL` to your own app, than you need to read out the `?code=...&state=...` query parameters, compare the `state` parameter to the value returned by `app.oauthLoginUrl()` earlier to protect against forgery attacks, then exchange the `code` for an OAuth Authorization token.
+If you set `(User) Authorization callback URL` to your own app, then you need to read out the `?code=...&state=...` query parameters, compare the `state` parameter to the value returned by `app.oauthLoginUrl()` earlier to protect against forgery attacks, then exchange the `code` for an OAuth Authorization token.
 
 If you run an [app server](#app-server) as described above, the default route to do that is `POST /api/github/oauth/token`.
 
@@ -950,7 +946,7 @@ if (code) {
     body: JSON.stringify({ code }),
   });
   const { token } = await response.json();
-  // `token` is the OAuth Access Token that can be use
+  // `token` is the OAuth Access Token that can be used
 
   const { Octokit } = await import("https://esm.sh/@octokit/core");
   const octokit = new Octokit({ auth: token });
@@ -968,9 +964,9 @@ The plan is to add an new `GET /api/github/oauth/octokit.js` route to the node m
 
 ## Action client
 
-**standalone module:** [`@octokit/action`](https://github.com/octokit/action.js#readme)
+**Standalone module:** [`@octokit/action`](https://github.com/octokit/action.js#readme)
 
-🚧 A fully fledged `Action` client is pending. You can use [`@actions/github`](https://github.com/actions/toolkit/tree/main/packages/github) for the time being
+🚧 A fully fledged `Action` client is pending. For now, you can use [`@actions/github`](https://github.com/actions/toolkit/tree/main/packages/github).
 
 ## LICENSE
 

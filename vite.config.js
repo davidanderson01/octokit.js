@@ -6,7 +6,10 @@ export default defineConfig({
       include: ["src/**/*.ts"],
       reporter: ["html"],
       thresholds: {
-        100: true,
+        statements: 100,
+        branches: 100,
+        functions: 100,
+        lines: 100,
       },
     },
   },

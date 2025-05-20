@@ -14,6 +14,9 @@ export type {
   PageInfoBackward,
 } from "@octokit/plugin-paginate-graphql";
 
+/**
+ * Custom Octokit instance with all plugins and sensible defaults.
+ */
 export const Octokit = OctokitCore.plugin(
   restEndpointMethods,
   paginateRest,
@@ -30,7 +33,9 @@ export const Octokit = OctokitCore.plugin(
 
 export type Octokit = InstanceType<typeof Octokit>;
 
-/* v8 ignore start no need to test internals of the throttle plugin */
+/**
+ * Handles primary rate limits by retrying once.
+ */
 function onRateLimit(
   retryAfter: number,
   options: Required<EndpointDefaults>,
@@ -47,6 +52,9 @@ function onRateLimit(
   }
 }
 
+/**
+ * Handles secondary rate limits by retrying once.
+ */
 function onSecondaryRateLimit(
   retryAfter: number,
   options: Required<EndpointDefaults>,

@@ -12,6 +12,25 @@
   "author": "Gregor Martynus (https://github.com/gr2m)",
   "repository": "github:octokit/octokit.js",
   "license": "MIT",
+  "homepage": "https://github.com/octokit/octokit.js#readme",
+  "bugs": {
+    "url": "https://github.com/octokit/octokit.js/issues"
+  },
+  "main": "dist-bundle/index.js",
+  "module": "dist-bundle/index.js",
+  "types": "dist-types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist-bundle/index.js",
+      "types": "./dist-types/index.d.ts"
+    }
+  },
+  "files": [
+    "dist-*",
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "node scripts/build.mjs && tsc -p tsconfig.json",
     "lint": "prettier --check \"{src,test,scripts}/**/*.{js,json,ts}\" \"*.{md,json}\"",

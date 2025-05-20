@@ -15,6 +15,14 @@ body:
       placeholder: Describe the maintenance need here.
     validations:
       required: true
+  - type: textarea
+    id: proposed-change
+    attributes:
+      label: Proposed Change
+      description: If you have a specific change or approach in mind, please describe it here.
+      placeholder: Describe your proposed change or refactor.
+    validations:
+      required: false
   - type: input
     id: sdk_version
     attributes:

@@ -10,16 +10,16 @@ The following commit message conventions determine which version is released:
 3. `BREAKING CHANGE:` in body: bumps breaking version, e.g. `1.2.3` → `2.0.0`
 
 Only one version number is bumped at a time, the highest version change trumps the others.
-Besides, publishing a new version to npm, semantic-release also creates a git tag and release
+Besides publishing a new version to npm, semantic-release also creates a git tag and release
 on GitHub, generates changelogs from the commit messages and puts them into the release notes.
 
-Before the publish it runs the `npm run build` script which creates a `pkg/` folder with distributions for browsers, node and Typescript definitions. The contents of the `pkg/` folder are published to the npm registry.
+Before the publish it runs the `npm run build` script which creates a `pkg/` folder with distributions for browsers, node and TypeScript definitions. The contents of the `pkg/` folder are published to the npm registry.
 
 If the pull request looks good but does not follow the commit conventions, use the <kbd>Squash & merge</kbd> button.
 
 > ⚠️ making sure the message is semantic-release compliant before clicking <kbd>Confirm squash and merge</kbd>:
 
-![Screenshot of GitHub's Squash and Merge confirm dialog](assets/squash-and-merge-dialog.png)]
+![Screenshot of GitHub's Squash and Merge confirm dialog](assets/squash-and-merge-dialog.png)
 
 ## Breaking changes
 
@@ -59,7 +59,7 @@ Note the repository for the change: if it's dependent on other repos where the s
 
 ```yml
 name: Release
-"on":
+on:
   push:
     branches:
       - main

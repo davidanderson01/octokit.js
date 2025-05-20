@@ -28,7 +28,7 @@ cd <repository name>
 npm install
 ```
 
-Run the tests before making changes to make sure the local setup is working as expected
+Run the tests before making changes to make sure the local setup is working as expected:
 
 ```shell
 npm test
@@ -36,20 +36,30 @@ npm test
 
 ## Submitting the Pull Request
 
-- Create a new branch locally.
-- Make your changes in that branch and push them to your fork
+- Create a new branch locally (e.g., `feature/your-feature`, `fix/your-bug`).
+- Make your changes in that branch and push them to your fork.
+- Run all tests and linters before submitting:
+  ```shell
+  npm test
+  npm run lint
+  ```
 - Submit a pull request from your topic branch to the main branch on the `octokit/<repository name>` repository.
+- Use the [pull request template](.github/pull_request_template.md) and fill out all sections.
 - Be sure to tag any issues your pull request is taking care of / contributing to. Adding "Closes #123" to a pull request description will automatically close the issue once the pull request is merged in.
 
 ## Testing a pull request from GitHub repo locally
 
 You can install `@octokit/<repository name>` from each pull request. Replace `[PULL REQUEST NUMBER]`:
 
-```
+```shell
 npm install https://github.pika.dev/octokit/<repository name>/pr/[PULL REQUEST NUMBER]
 ```
 
-Once you are done testing, you can revert to the default module `@octokit/<repository name>` from npm with `npm install @octokit/<repository name>`
+Once you are done testing, you can revert to the default module `@octokit/<repository name>` from npm with:
+
+```shell
+npm install @octokit/<repository name>
+```
 
 ## Maintainers
 

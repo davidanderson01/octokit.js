@@ -16,6 +16,18 @@ body:
     validations:
       required: true
   - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Please provide clear steps to reproduce the issue.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
     id: versions
     attributes:
       label: Versions
@@ -23,6 +35,14 @@ body:
       placeholder: Octokit.js v2.0.10, Node v16.18.0
     validations:
       required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment (OS, Browser, etc.)
+      description: Please specify your operating system, browser, or any other relevant environment details.
+      placeholder: Windows 11, Chrome 123, etc.
+    validations:
+      required: false
   - type: textarea
     id: logs
     attributes:
